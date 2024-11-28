@@ -1,7 +1,6 @@
 package A02_Queue;
 
-public class Node<T>
-{
+public class Node<T> {
     private final T data;
 
     private Node<T> next;
