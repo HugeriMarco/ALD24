@@ -9,6 +9,8 @@ public class Wörterbuch {
 	 * Wurzel des Baums (Startknoten)
 	 */
 	private Wort root;
+	private int count =0;
+	private Wort temp;
 	
 	public Wort getRoot() {
 		return root;
@@ -20,8 +22,32 @@ public class Wörterbuch {
 	 * @return Zahl der Wörter (=Anzahl der Elemente)
 	 */
 	public int countWordsInSubTree(Wort w) {
-		
-		return 0;
+
+
+		if (w == null)
+			return 0;
+		if (root == null)
+			return 0;
+		else {
+
+			temp = w;
+
+
+			if (temp.getLeft() != null) {
+				temp = temp.getLeft();
+				count++;
+				return countWordsInSubTree(temp);
+			}
+			if (temp.getRight() != null) {
+				temp = temp.getRight();
+				count++;
+				return countWordsInSubTree(temp);
+			} else {
+				return count;
+			}
+		}
+
+
 	}
 
 	/**
