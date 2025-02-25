@@ -9,55 +9,107 @@ public class Wörterbuch {
 	 * Wurzel des Baums (Startknoten)
 	 */
 	private Wort root;
-	private int count =0;
+	private int count = 1;
 	private Wort temp;
-	
+	private boolean found;
+	private Set<String> sset;
+
 	public Wort getRoot() {
 		return root;
 	}
 
 	/**
 	 * Zählt alle Wörter des Teilbaums ab einem bestimmten Wort
+	 *
 	 * @param w Wort
 	 * @return Zahl der Wörter (=Anzahl der Elemente)
 	 */
 	public int countWordsInSubTree(Wort w) {
 
 
-		if (w == null)
+		if (w == null) {
 			return 0;
-		if (root == null)
-			return 0;
-		else {
-
-			temp = w;
-
-
-			if (temp.getLeft() != null) {
-				temp = temp.getLeft();
-				count++;
-				return countWordsInSubTree(temp);
-			}
-			if (temp.getRight() != null) {
-				temp = temp.getRight();
-				count++;
-				return countWordsInSubTree(temp);
-			} else {
-				return count;
-			}
 		}
 
 
+//
+
+
+		if (w.getLeft() != null) {
+			count++;
+			countWordsInSubTree(w.getLeft());
+
+
+
+		}
+
+		if (w.getRight() != null) {
+			count++;
+			countWordsInSubTree(w.getRight());
+		}
+
+		return count;
+
 	}
+
 
 	/**
 	 * Liefert die Menge aller Wörter retour, die ein spezifisches Präfix haben.
+	 *
 	 * @param prefix Wörter müssen diesen Präfix haben
 	 * @return Menge aller zutreffenden Wörter
 	 */
 	public Set<String> getWordsWithPrefix(String prefix) {
-		
-		return null;
+
+
+		if (temp == null)
+			temp = root;
+
+
+		if (temp.getLeft() != null) {
+			temp = temp.getLeft();
+			getWordsWithPrefix(prefix);
+
+
+			if (temp.getRight() != null) {
+				temp = temp.getRight();
+				getWordsWithPrefix(prefix);
+
+
+			}
+		}
+		if (temp.getWort().startsWith(prefix)) {
+			sset.add(temp.getWort());
+		}
+		temp = temp.getParent();
+
+//		if (temp == null)
+//			temp = root;
+//
+//		while(temp.getLeft() != null) {
+//
+//		}
+//			if (temp.getWort().startsWith(prefix)) {
+//				sset.add(temp.getWort());
+//
+//			temp = temp.getLeft();
+//
+//
+
+
+		//}
+
+
+
+
+
+
+
+
+	//	prefix.startsWith()
+		return sset;
+
+
 	}
 	
 
