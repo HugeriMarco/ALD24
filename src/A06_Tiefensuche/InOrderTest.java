@@ -25,6 +25,10 @@ public class InOrderTest {
 		ts.add(new Film("Alien", 1.95));
 		ts.add(new Film("The Great Dictator", 2.06));
 		ts.add(new Film("Adaption", 1.9));
+
+
+
+
 	}
 
 	@Test

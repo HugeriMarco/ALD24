@@ -23,6 +23,7 @@ public class BreitensucheTest {
 		bs.add(12);
 		bs.add(11);
 		bs.add(15);
+
 	}
 
 	@Test

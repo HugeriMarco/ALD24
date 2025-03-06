@@ -59,6 +59,20 @@ public class ListGraph implements Graph {
 
 	public void removeEdge(int u, int v) {
 		// TODO
+
+		graph[u].remove(findEdge(u,v));
+		graph[u].remove(findEdge(v,u));
+
+		// wenn die gesamte kante gelöscht werden soll:
+		// graph[u].remove(findEdge(v,u));
+
+//		for(WeightedEdge we : graph[u])
+//		{
+//			if(we.to_vertex == v)
+//				graph[u].remove(we);
+//		}
+//
+
 	}
 
 	public List<WeightedEdge> getEdges(int v) {

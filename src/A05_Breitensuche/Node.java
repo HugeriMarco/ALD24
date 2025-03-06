@@ -16,11 +16,14 @@ public class Node<Type> {
 	 * Elternelement
 	 */
 	protected Node<Type> parent;
+	protected Type lvl;
 	
 	/**
 	 * Wert des Knotens, hier: String, der Wort enthält
 	 */
 	protected final Type value;
+
+
 
 
 	/**
@@ -29,7 +32,10 @@ public class Node<Type> {
 	 */
 	public Node(Type value) {
 		this.value = value;
+
 	}
+
+
 
 	public Node<Type> getLeft() {
 		return left;
@@ -58,5 +64,12 @@ public class Node<Type> {
 	public Type getValue() {
 		return value;
 	}
-	
+
+	public Type getLvl() {
+		return lvl;
+	}
+
+	public void setLvl(Type lvl) {
+		this.lvl = lvl;
+	}
 }
