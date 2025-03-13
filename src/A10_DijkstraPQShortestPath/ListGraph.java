@@ -56,7 +56,19 @@ public class ListGraph implements Graph {
 	}
 
 	public void removeEdge(int u, int v) {
-		// TODO
+		WeightedEdge edgeUV = findEdge(u, v);
+
+		if (edgeUV != null) {
+			graph[u].remove(edgeUV);
+		}
+
+		if (!directed) {
+			WeightedEdge edgeVU = findEdge(v, u);
+			if (edgeVU != null) {
+				graph[v].remove(edgeVU);
+
+			}
+		}
 	}
 
 	public List<WeightedEdge> getEdges(int v) {

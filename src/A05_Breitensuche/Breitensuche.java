@@ -1,8 +1,16 @@
 package A05_Breitensuche;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Breitensuche extends BaseTree<Integer> {
+
+
+	Queue<Node<Integer>> qorder = new ArrayDeque();
+	List<Integer> blist = new ArrayList<>();
+
 
 	@Override
 	protected int compare(Integer a, Integer b) {
@@ -16,7 +24,26 @@ public class Breitensuche extends BaseTree<Integer> {
 	 */
 	public List<Integer> getBreadthFirstOrder(Node<Integer> start) {
 
-		return null;
+
+		Node<Integer> newNode = start;
+
+
+		qorder.add(newNode);
+
+		while(!qorder.isEmpty())
+		{
+			newNode= qorder.poll();
+			blist.add(newNode.getValue());
+			if(newNode.getLeft()!=null)
+				qorder.add(newNode.getLeft());
+			if(newNode.getRight()!=null)
+				qorder.add(newNode.getRight());
+
+		}
+
+
+	return blist;
+
 	}
 
 	/**
@@ -28,7 +55,45 @@ public class Breitensuche extends BaseTree<Integer> {
 	 */
 	public List<Integer> getBreadthFirstOrderForLevel(Node<Integer> start, int level) {
 
-		return null;
+		Node<Integer> newNode = start;
+		int lvlc = 1;
+		newNode.setLevel(lvlc);
+
+
+
+
+		qorder.add(newNode);
+
+		while(!qorder.isEmpty())
+		{
+			newNode= qorder.poll();
+
+
+
+			if(level==newNode.getLevel()) {
+				blist.add(newNode.getValue());
+			}
+
+			if(lvlc<=newNode.getLevel())
+				lvlc++;
+
+
+			if(newNode.getLeft()!=null) {
+				qorder.add(newNode.getLeft());
+				newNode.getLeft().setLevel(lvlc);
+			}
+
+			if(newNode.getRight()!=null) {
+				qorder.add(newNode.getRight());
+				newNode.getRight().setLevel(lvlc);
+			}
+
+
+		}
+
+
+		return blist;
+
 	}
 
 }

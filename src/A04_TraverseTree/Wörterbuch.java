@@ -1,5 +1,6 @@
 package A04_TraverseTree;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -9,6 +10,8 @@ public class Wörterbuch {
 	 * Wurzel des Baums (Startknoten)
 	 */
 	private Wort root;
+	private int counter =1;
+	private Set<String> lset = new HashSet<>();
 	
 	public Wort getRoot() {
 		return root;
@@ -20,8 +23,32 @@ public class Wörterbuch {
 	 * @return Zahl der Wörter (=Anzahl der Elemente)
 	 */
 	public int countWordsInSubTree(Wort w) {
-		
-		return 0;
+
+		if(w == null)
+			return 0;
+
+
+		if(w.getLeft()!=null) {
+			counter++;
+			countWordsInSubTree(w.getLeft());
+
+		}
+
+		if(w.getRight()!=null) {
+			counter++;
+			countWordsInSubTree(w.getRight());
+
+		}
+
+		return counter;
+
+//		if(w == null)
+//			return 0;
+//
+//		return 1 + countWordsInSubTree(w.getLeft()) + countWordsInSubTree(w.getRight());
+//
+
+
 	}
 
 	/**
@@ -31,7 +58,41 @@ public class Wörterbuch {
 	 */
 	public Set<String> getWordsWithPrefix(String prefix) {
 		
-		return null;
+		if(root == null)
+			return null;
+
+		Wort w = root;
+
+		return search(w, prefix);
+
+
+
+	}
+	public Set<String> search(Wort w, String prefix) {
+
+		if(w==null)
+			return lset;
+
+		if(w.getWort().startsWith(prefix))
+			lset.add(w.getWort());
+
+		if(w.getLeft()!=null) {
+//			if (w.getLeft().getWort().startsWith(prefix)) {
+//				lset.add(w.getLeft().getWort());
+//
+//			}
+			search(w.getLeft(),prefix);
+
+		}
+		if(w.getRight()!=null) {
+//			if (w.getRight().getWort().startsWith(prefix)) {
+//				lset.add(w.getRight().getWort());
+//
+//			}
+			search(w.getRight(), prefix);
+		}
+
+		return lset;
 	}
 	
 
