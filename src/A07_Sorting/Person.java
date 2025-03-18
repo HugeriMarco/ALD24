@@ -24,6 +24,11 @@ public class Person {
 	 * @return <0, wenn a<b || =0, wenn a=b || >0, wenn a>b
 	 */
 	public int compareTo(Person p) {
-		return 0;
+
+
+		if(this.nachname.compareTo(p.getNachname())== 0)
+			return this.vorname.compareTo(p.getVorname());
+
+		return nachname.compareTo(p.getNachname());
 	}
 }

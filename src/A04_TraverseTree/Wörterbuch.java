@@ -27,20 +27,19 @@ public class Wörterbuch {
 		if(w == null)
 			return 0;
 
+		int count = 1;
 
 		if(w.getLeft()!=null) {
-			counter++;
-			countWordsInSubTree(w.getLeft());
+			count = count + countWordsInSubTree(w.getLeft());
 
 		}
 
 		if(w.getRight()!=null) {
-			counter++;
-			countWordsInSubTree(w.getRight());
+			count = count + countWordsInSubTree(w.getRight());
 
 		}
 
-		return counter;
+		return count;
 
 //		if(w == null)
 //			return 0;
