@@ -48,6 +48,13 @@ public abstract class FindWay {
 
 		// TODO: IHRE IMPLEMENTIERUNG
 
+		while(to!=from) {
+			way.add(0,to);
+			to = pred[to];
+
+		}
+		way.add(0,from);
+
 		return way;
 	}
 }
