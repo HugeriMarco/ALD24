@@ -11,12 +11,56 @@ public class QuickSort implements PersonenSort {
 	}
 
 	private void sort(Person[] personen, int left, int right) {
-		// TODO: Implementation
+
+
+
+		while(left<=right) {
+
+
+			int p = partition(personen, left, right);
+			sort(personen, left, p - 1);
+			sort(personen, p + 1, right);
+		}
+
 	}
 
 	private int partition(Person[] personen, int left, int right) {
-		// TODO: Implementation
 
-		return 1;
+		int p = right;
+		int i = left-1;
+		int k = right;
+
+
+		do {
+
+			do {
+				i++;
+
+			}while(personen[i].compareTo(personen[p]) < 1 && i <= right);
+
+
+			do {
+				k--;
+
+			}while(personen[k].compareTo(personen[p]) > 1 && k >= left);
+
+
+			if(i<k) {
+				Person copy = personen[i];
+				personen[i] = personen[k];
+				personen[k] = copy;
+			}
+
+
+
+
+		}while(i<k);
+
+		Person copy = personen[p];
+		personen[p] = personen[i];
+		personen[i] = copy;
+
+
+		return i;
 	}
 }

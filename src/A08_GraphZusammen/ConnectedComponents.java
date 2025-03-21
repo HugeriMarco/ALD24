@@ -50,8 +50,7 @@ public class ConnectedComponents {
 
 		for (WeightedEdge edge : g.getEdges(i)) {
 
-			if (visited[edge.to_vertex]>-1)
-				continue;
+
 
 
 			search(g,edge.to_vertex,result);

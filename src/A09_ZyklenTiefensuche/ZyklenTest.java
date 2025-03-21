@@ -33,6 +33,17 @@ public class ZyklenTest {
 		Zyklen z = new Zyklen(g);
 		assertCycle(g, 6, z.getCycle());
 	}
+	@Test
+	public void connectedRingGraph2() {
+		Graph g = new ListGraph(5, true);
+		g.addEdge(0, 1);
+		g.addEdge(1, 2);
+		g.addEdge(2, 3);
+		g.addEdge(3, 4);
+		g.addEdge(4, 1);
+		Zyklen z = new Zyklen(g);
+		assertCycle(g, 5, z.getCycle());
+	}
 	
 	@Test
 	public void miscGraph() {
