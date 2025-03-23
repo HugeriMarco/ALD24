@@ -63,9 +63,7 @@ public class Breitensuche extends BaseTree<Integer> {
 		{
 
 
-			Node<Integer> first = queue.poll();
-			listb.add(first.getValue());
-			start = first;
+            start = queue.poll();
 
 			if(level==start.getLvl()) {
 				listb.add(level);
@@ -77,15 +75,12 @@ public class Breitensuche extends BaseTree<Integer> {
 
 			if(start.getLeft()!=null) {
 					queue.add(start.getLeft());
-				if(start.getLeft().getLvl() <1)
 					start.getLeft().setLvl(level);
 			}
 
 			if(start.getRight()!=null) {
-				if(start.getLvl() == level)
 					queue.add(start.getRight());
-				if(start.getLeft().getLvl() <1)
-					start.getLeft().setLvl(level);
+					start.getRight().setLvl(level);
 			}
 
 
