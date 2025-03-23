@@ -1,6 +1,9 @@
 package A05_Breitensuche;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Breitensuche extends BaseTree<Integer> {
 
@@ -16,7 +19,29 @@ public class Breitensuche extends BaseTree<Integer> {
 	 */
 	public List<Integer> getBreadthFirstOrder(Node<Integer> start) {
 
-		return null;
+		Queue<Node<Integer>> queue = new ArrayDeque<>();
+		List<Integer> listb = new ArrayList<>();
+		queue.add(start);
+
+		while(!queue.isEmpty())
+		{
+
+
+			Node<Integer> first = queue.poll();
+			listb.add(first.getValue());
+			start = first;
+
+			if(start.getLeft()!=null)
+				queue.add(start.getLeft());
+			if(start.getRight()!=null)
+				queue.add(start.getRight());
+
+
+
+		}
+
+
+		return listb;
 	}
 
 	/**
@@ -28,7 +53,45 @@ public class Breitensuche extends BaseTree<Integer> {
 	 */
 	public List<Integer> getBreadthFirstOrderForLevel(Node<Integer> start, int level) {
 
-		return null;
+		Queue<Node<Integer>> queue = new ArrayDeque<>();
+		List<Integer> listb = new ArrayList<>();
+		start.setLvl(1);
+		queue.add(start);
+		level = 1;
+
+		while(!queue.isEmpty())
+		{
+
+
+			Node<Integer> first = queue.poll();
+			listb.add(first.getValue());
+			start = first;
+
+			if(start.getLvl() > 1)
+				level++;
+
+			if(start.getLeft()!=null) {
+				if(start.getLvl() == level)
+					queue.add(start.getLeft());
+				if(start.getLeft().getLvl() <1)
+					start.getLeft().setLvl(level);
+			}
+
+			if(start.getRight()!=null) {
+				if(start.getLvl() == level)
+					queue.add(start.getRight());
+				if(start.getLeft().getLvl() <1)
+					start.getLeft().setLvl(level);
+			}
+
+
+
+
+		}
+
+
+		return listb;
+
 	}
 
 }

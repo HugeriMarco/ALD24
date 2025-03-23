@@ -14,19 +14,22 @@ public class QuickSort implements PersonenSort {
 
 
 
-		while(left<=right) {
+		if(left>=right)
+			return;
+
+		int p = partition(personen, left, right);
+		sort(personen, left, p - 1);
+		sort(personen, p + 1, right);
 
 
-			int p = partition(personen, left, right);
-			sort(personen, left, p - 1);
-			sort(personen, p + 1, right);
-		}
 
 	}
 
 	private int partition(Person[] personen, int left, int right) {
 
 		int p = right;
+		//Person pivot = personen[right];
+
 		int i = left-1;
 		int k = right;
 
@@ -36,13 +39,13 @@ public class QuickSort implements PersonenSort {
 			do {
 				i++;
 
-			}while(personen[i].compareTo(personen[p]) < 1 && i <= right);
+			}while(i <= right && personen[i].compareTo(personen[p]) < 0 );
 
 
 			do {
 				k--;
 
-			}while(personen[k].compareTo(personen[p]) > 1 && k >= left);
+			}while(k >= left && personen[k].compareTo(personen[p]) > 0 ) ;
 
 
 			if(i<k) {
@@ -56,8 +59,8 @@ public class QuickSort implements PersonenSort {
 
 		}while(i<k);
 
-		Person copy = personen[p];
-		personen[p] = personen[i];
+		Person copy = personen[right];
+		personen[right] = personen[i];
 		personen[i] = copy;
 
 
