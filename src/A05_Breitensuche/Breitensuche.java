@@ -57,11 +57,10 @@ public class Breitensuche extends BaseTree<Integer> {
 		List<Integer> listb = new ArrayList<>();
 		start.setLvl(1);
 		queue.add(start);
-		level = 1;
+		int lvl = 1;
 
 		while(!queue.isEmpty())
 		{
-
 
             start = queue.poll();
 
@@ -69,21 +68,19 @@ public class Breitensuche extends BaseTree<Integer> {
 				listb.add(start.getValue());
 			}
 
-			if(level<=start.getLvl())
-				level++;
+			if(lvl==start.getLvl())
+				lvl++;
 
 
 			if(start.getLeft()!=null) {
 					queue.add(start.getLeft());
-					start.getLeft().setLvl(level);
+					start.getLeft().setLvl(lvl);
 			}
 
 			if(start.getRight()!=null) {
 					queue.add(start.getRight());
-					start.getRight().setLvl(level);
+					start.getRight().setLvl(lvl);
 			}
-
-
 
 
 		}
@@ -91,45 +88,6 @@ public class Breitensuche extends BaseTree<Integer> {
 
 		return listb;
 
-//
-//		Node<Integer> newNode = start;
-//		int lvlc = 1;
-//		newNode.setLevel(lvlc);
-//
-//
-//
-//
-//		qorder.add(newNode);
-//
-//		while(!qorder.isEmpty())
-//		{
-//			newNode= qorder.poll();
-//
-//
-//
-//			if(level==newNode.getLevel()) {
-//				blist.add(newNode.getValue());
-//			}
-//
-//			if(lvlc<=newNode.getLevel())
-//				lvlc++;
-//
-//
-//			if(newNode.getLeft()!=null) {
-//				qorder.add(newNode.getLeft());
-//				newNode.getLeft().setLevel(lvlc);
-//			}
-//
-//			if(newNode.getRight()!=null) {
-//				qorder.add(newNode.getRight());
-//				newNode.getRight().setLevel(lvlc);
-//			}
-//
-//
-//		}
-//
-//
-//		return blist;
 
 	}
 

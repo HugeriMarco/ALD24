@@ -40,6 +40,9 @@ public class Tiefensuche extends BaseTree<Film> {
 		movielist.addAll(getNodesInOrder(node.getRight()));
 
 		return movielist;
+
+
+
 	}
 	
 	/**
